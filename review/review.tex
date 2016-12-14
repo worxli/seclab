@@ -239,7 +239,7 @@ In this section we briefly discuss the implementation of the proposed countermea
 
 \paragraph{Private Keys}
 \begin{enumerate}[label=(\alph*)]
-\item \textbf{Access Control (1)}: As mentioned in \ref{sec_req} the private keys and the pk12 files of the users are accessible to the web server. This is not needed as the files are passed through the backend for download anyways and should therefore be changed.
+\item \textbf{Access Control (1)}: As mentioned in \ref{sec_req} the private keys and the pk12 files of the users are not accessible to the web server which adhere to the least privilege principle.
 \item \textbf{HTTPS (2)}: HTTPS is properly implemented on the webserver and weak cyphers are disallowed.
 \item \textbf{Notification Channel for Irregularities (3):} Could not be found.
 \end{enumerate} 
@@ -300,7 +300,7 @@ and then issuing a certificate, we were able to compromise the application's sec
 \end{enumerate}
 
 \subsubsection{UDP Bash}
-We discovered, that the port 12345 for UDP packets is open on the firewall. Upon further inspection we noticed, that communication on this port is nated to the webserver where a hidden process (executed by root, located in /home/admin/.hidden/a.out) is listening on the port. Using some reverse engineering we discovered the password (6p9mkXhw) which needs to be sent when connecting to the mentioned port using e.g.
+We discovered that the port 12345 for UDP packets is open on the firewall. Upon further inspection we noticed that communication on this port is nated to the webserver where a hidden process (executed by root, located in /home/admin/.hidden/a.out) is listening on the port. Using reverse engineering we discovered the password (6p9mkXhw) which needs to be sent when connecting to the mentioned port using e.g.
 \begin{lstlisting}[language=bash]
 $nc 192.168.56.10 12345 -u
 \end{lstlisting}
